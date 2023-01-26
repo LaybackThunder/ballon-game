@@ -6,7 +6,7 @@ from balloonConstants import *
 from abc import ABC, abstractmethod
 
 class Balloon(ABC):
-    """This class represents an abstract balloon."""
+    """This abstract class represents a balloon."""
 
     popSoundLoad = False
     popSound = None # Load when first balloon is created
@@ -30,12 +30,11 @@ class Balloon(ABC):
         balloonRect = self.balloonImage.get_rect() # Get img WxH
         self.width = balloonRect.width
         self.height = balloonRect.height
-        # Position ballon within the width of window,
+        # Position balloon within the width of window,
         # but below the button. 
         self.x = random.randrange(maxWidth - self.width)
         self.y = maxHeight + random.randrange(75)
         self.balloonImage.setLoc((self.x, self.y)) 
-        """--------------What is setLoc???--------------"""
     
     def clickInside(self, mousePoint):
         """Returns bool and points 
@@ -63,7 +62,6 @@ class Balloon(ABC):
         """Draw object to screen."""
         
         self.balloonImage.draw()
-        """--------------How is it drawing itself???--------------"""
     
     def __del__(self):
         """Modifying magic method to print message when balloon dies."""
@@ -72,14 +70,32 @@ class Balloon(ABC):
     
 
 class BalloonSmall(Balloon):
-    """This class represents an small balloon."""
-
+    """This subclass represents an small balloon."""
     ballooImage = pygame.image.load('images\lloonSmallRed.png')
+
     def __init__(self, window, maxWidth, maxHeight, ID):
-        oImage = pygwidgets.image(window, (0, 0), 
-                                    BalloonSmall.ballooImage)
+
+        oImage = pygwidgets.image(window, (0, 0), BalloonSmall.ballooImage)
         super().__init__(window, maxWidth, maxHeight, ID, 
-                        oImage, 'Small', nPoints=30, speedY=30)
+                        oImage, 'Small', nPoints=30, speedY=3.1)
 
+class BalloonMedium(Balloon):
+    """This subclass represents a medium ballon."""
+    balloonImage = pygame.image.load('images\lloonMediumRed.png')
 
+    def __init__(self, window, maxWidth, maxHeight, ID):
+
+        oImage = pygwidgets.Image(window, (0, 0), BalloonMedium.balloonImage)
+        super().__init__(window, maxWidth, maxHeight, ID,
+                        oImage, 'Medium', nPoints=20, speedY=2.2)
+    
+class BalloonLarge(Balloon):
+    """This subclass represents a Large balloon."""
+    balloonImage = pygame.image.load('images\lloonLargeRed.png')
+
+    def __init__(self, window, maxWidth, maxHeight, ID):
+
+        oImage = pygwidgets.Image(window, (0, 0), BalloonMedium.balloonImage)
+        super().__init__(window, maxWidth, maxHeight, ID,
+                        oImage, 'Large', nPoints=10, speedY=1.5)
 
