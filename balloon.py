@@ -43,9 +43,11 @@ class Balloon(ABC):
         myRect = pygame.Rect(self.x, self.y, self.width, self.height)
         if myRect.collidepoint(mousePoint):
             Balloon.popSound.play()
-            return True, self.nPoints # True here means it was hit
+            wasHit = True
+            return wasHit, self.nPoints # True here means it was hit
         else:
-            return False, 0 # not hit, no points
+            wasHit = False
+            return wasHit, 0 # not hit, no points
     
     def update(self):
         """Update balloon vert movement 
@@ -74,7 +76,6 @@ class BalloonSmall(Balloon):
     ballooImage = pygame.image.load('images\lloonSmallRed.png')
 
     def __init__(self, window, maxWidth, maxHeight, ID):
-
         oImage = pygwidgets.image(window, (0, 0), BalloonSmall.ballooImage)
         super().__init__(window, maxWidth, maxHeight, ID, 
                         oImage, 'Small', nPoints=30, speedY=3.1)
@@ -84,7 +85,6 @@ class BalloonMedium(Balloon):
     balloonImage = pygame.image.load('images\lloonMediumRed.png')
 
     def __init__(self, window, maxWidth, maxHeight, ID):
-
         oImage = pygwidgets.Image(window, (0, 0), BalloonMedium.balloonImage)
         super().__init__(window, maxWidth, maxHeight, ID,
                         oImage, 'Medium', nPoints=20, speedY=2.2)
@@ -94,7 +94,6 @@ class BalloonLarge(Balloon):
     balloonImage = pygame.image.load('images\lloonLargeRed.png')
 
     def __init__(self, window, maxWidth, maxHeight, ID):
-
         oImage = pygwidgets.Image(window, (0, 0), BalloonMedium.balloonImage)
         super().__init__(window, maxWidth, maxHeight, ID,
                         oImage, 'Large', nPoints=10, speedY=1.5)
