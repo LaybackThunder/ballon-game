@@ -36,7 +36,7 @@ class Balloon(ABC):
         self.y = maxHeight + random.randrange(75)
         self.balloonImage.setLoc((self.x, self.y)) 
     
-    def clickInside(self, mousePoint):
+    def clickedInside(self, mousePoint):
         """Returns bool and points 
         if balloons was clicked/intersected by mouse coordinates."""
 
