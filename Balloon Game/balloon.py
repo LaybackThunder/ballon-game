@@ -18,7 +18,6 @@ class Balloon(ABC):
 
         self.window = window
         self.ID = ID
-        """--------------What is ID???--------------"""
         self.balloonImage = oImage
         self.size = size
         self.nPoints = nPoints
@@ -26,7 +25,7 @@ class Balloon(ABC):
         if not Balloon.popSoundLoad: # Load first time only
             Balloon.popSoundLoad = True
             Balloon.popSound = pygame.mixer.Sound('sound\soundsBalloonPop.wav')
-        
+
         balloonRect = self.balloonImage.getRect() # Get img WxH
         self.width = balloonRect.width
         self.height = balloonRect.height
@@ -34,7 +33,7 @@ class Balloon(ABC):
         # but below the button. 
         self.x = random.randrange(maxWidth - self.width)
         self.y = maxHeight + random.randrange(75)
-        self.balloonImage.setLoc((self.x, self.y)) 
+        self.balloonImage.setLoc((self.x, self.y))
     
     def clickedInside(self, mousePoint):
         """Returns bool and points 
